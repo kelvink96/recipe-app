@@ -1,12 +1,10 @@
-//TODO look at - https://hackernoon.com/how-to-use-environment-variables-keep-your-secret-keys-safe-secure-8b1a7877d69c
-
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import Recipe from "./Recipe";
+// require('dotenv').config();
 
 const App = () => {
-	const APP_ID = '65ecdd67';
-	const APP_KEY = '419c18a2b173e7752e35366cbba8c04e';
+	const {REACT_APP_API_KEY, REACT_APP_ID} = process.env;
 
 	const [recipes, setRecipes] = useState([]);
 	const [search, setSearch] = useState("");
@@ -17,7 +15,7 @@ const App = () => {
 	}, [query]);
 
 	const getRecipes = async () => {
-		const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
+		const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${REACT_APP_ID}&app_key=${REACT_APP_API_KEY}`);
 		const data = await response.json();
 		setRecipes(data.hits);
 		console.log(data.hits);
