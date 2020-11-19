@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import Recipe from "./Recipe";
-// require('dotenv').config();
 
 const App = () => {
 	const {REACT_APP_API_KEY, REACT_APP_ID} = process.env;
